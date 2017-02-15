@@ -8,6 +8,7 @@ morgan = require('morgan'),
 methodOverride = require('method-override'),
 errorHandler = require('errorhandler');
 moment = require('moment');
+multer = require('multer');
 module.exports = function(app) {
 app.use(morgan('dev'));
 app.use(bodyParser({
