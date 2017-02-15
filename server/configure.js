@@ -9,14 +9,15 @@ methodOverride = require('method-override'),
 errorHandler = require('errorhandler');
 moment = require('moment');
 multer = require('multer');
+var upload = multer({ dest: path.join(__dirname,
+'public/upload/temp')});
 module.exports = function(app) {
 app.use(morgan('dev'));
-app.use(bodyParser({
-uploadDir:path.join(__dirname, 'public/upload/temp')
-}));
+app.use(upload.single('file'));
 app.use(methodOverride());
 app.use(cookieParser('some-secret-value-here'));
 routes(app);
+
 app.use('/public/', express.static(path.join(__dirname,
 '../public')));
 if ('development' === app.get('env')) {
